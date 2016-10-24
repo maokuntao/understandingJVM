@@ -10,7 +10,7 @@
 
 ### 2.2 Java运行时数据区 ###
 
-> ![Java运行时数据区](http://images.cnblogs.com/cnblogs_com/Cratical/201208/201208212311249241.png)
+> ![Java运行时数据区](img/Java runtime data area.png)
 
 #### 2.2.1 程序计数器 ####
 
