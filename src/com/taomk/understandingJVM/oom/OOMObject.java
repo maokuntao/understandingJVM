@@ -8,4 +8,7 @@ package com.taomk.understandingJVM.oom;
  */
 public class OOMObject {
 
+	public static void main(String[] args) {
+		System.out.println("Hello");
+	}
 }
