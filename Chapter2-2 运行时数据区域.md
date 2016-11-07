@@ -109,22 +109,3 @@
 
 ### 2.4.5 本机直接内存溢出 ###
 > DirectMemory可以通过-XX:MaxDirectMemorySize指定，如果不指定，则默认与Java堆的最大值（-Xmx指定）一样。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
