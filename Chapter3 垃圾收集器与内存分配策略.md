@@ -102,3 +102,8 @@
 > ![HotSpot JVM 1.6 GC ](img/HotSpot JVM 1.6 GC .jpg)
 > 
 > 其中，如果两个收集器之间有连线，说明可以搭配使用。
+
+### 3.4.1 Serial收集器 ###
+> 
+> 
+> 
