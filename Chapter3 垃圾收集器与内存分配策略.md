@@ -119,4 +119,8 @@
 > *并发（Concurrent）：指用户线程与垃圾收集线程同时执行（但不一定是并行的，可能会交替运行），用户程序继续运行，而垃圾收集线程运行在另一个CPU上。*
 
 ### 3.4.3 Parallel Scavenge ###
-> Parallel Scavenge收集器是一个使用复制算法的并行的多线程收集器，它关注于提高吞吐量（Throughput，CPU用于运行用户代码的时间和CPU消耗时间的比值）。
+> Parallel Scavenge收集器是一个使用复制算法的并行的多线程收集器，它关注于提高吞吐量（Throughput，CPU用于运行用户代码的时间和CPU消耗时间的比值）。另外，自适应调节策略也是Parallel Scavenge和ParNew收集器的区别
+
+
+> 
+> 
