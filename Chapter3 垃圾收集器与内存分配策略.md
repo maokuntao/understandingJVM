@@ -124,6 +124,9 @@
 ### 3.4.4 Serial Old 收集器 ###
 > 是Serial收集器的老年版本。
 
+### 3.4.5 Parallel Old 收集器 ###
+> 是Parallel Scavenge 收集器的老年版本。
+
 
 > 
 > 
