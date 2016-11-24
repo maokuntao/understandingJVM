@@ -187,6 +187,7 @@
 > 
 > 虚拟机提供了```-XX:PretenureSizeThreshold```参数，让大于这个设置值的对象直接在老年代中分配，这样做的目的是避免在Eden区及两个Survivor区之间发生大量的内存拷贝（新生代采用复制算法来收集内存）。
 > 
+> *PretenureSizeThreshold参数只对Serial和ParNew两款收集器有效，Parallel Scavenge收集器不认识这个参数，一般也没必要设置。如果遇到必需使用此参数的场合，可以考虑ParNew+CMS的收集器组合*
 > 
 
  
