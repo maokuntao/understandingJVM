@@ -58,4 +58,6 @@
 > - **启动类加载器（Bootstrap ClassLoader）**，使用C++实现，是虚拟机的一部分
 > - 其他类加载器，由Java语言实现，独立于虚拟机之外的，全部继承自抽象类 ```java.lang.ClassLoader```
 > 
+> 从开发人员的角度，类加载器可以划分得更细致一些：
 > 
+> - 启动类加载器（Bootstrap ClassLoader）：
