@@ -62,4 +62,5 @@
 > 
 - **启动类加载器（Bootstrap ClassLoader）**：负责将存放在 ```<JAVA_HOME>\lib``` 目录中的，或者被 ```-Xbootclasspath``` 参数所指定的路径中的，并且是虚拟机识别的类库加载到虚拟机内存中。
 - **扩展类加载器（Extension ClassLoader）**：负责加载 ```<JAVA_HOME>\lib\ext``` 目录下的，或者被 ```java.ext.dirs``` 系统变量所指定的路径中的所有类库，开发者可以直接使用扩展类加载器。
-- 
+- **应用程序类加载器（Application ClassLoader）**：负责加载用户类路径（ClassPath）上所指定的类库，一般情况下这个就是程序中默认的类加载器。
+
