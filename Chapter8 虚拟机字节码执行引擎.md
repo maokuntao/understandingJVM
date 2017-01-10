@@ -13,5 +13,9 @@
 > 
 > 栈帧的概念结构图：
 > ![栈帧的概念结构](img/栈帧的概念结构.jpg)
+
+#### 8.2.1 局部变量表 ####
+> 局部变量表是一组变量值存储空间，用于存放方法的参数和方法类定义的局部变量。
 > 
-> 
+> 它是以变量槽（Variable Slot）为最小单位，每一个Slot（32位）都应该能放一个 boolean 、byte 、char 、float 、 reference 、 short 、 int 或 returnAddress 类型数据。而至于 long 、double 两种数据则被规定为是64位数据（连续两个32位）。
+> *reference类型数据可能食32位，也可能是64位数据*
