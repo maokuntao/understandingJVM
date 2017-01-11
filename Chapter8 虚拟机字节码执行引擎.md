@@ -37,5 +37,9 @@
 > 
 > - 正常完成出口（Normal Method Invocation Completion）
 > - 异常完成出口（Abrupt Method Invocation Completion）
-> 
+
+#### 8.2.5 附加信息 ###
+> 虚拟机规范允许具体的虚拟机实现增加一些规范里没有描述的信息到栈帧之中。
+
+
 > 
