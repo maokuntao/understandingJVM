@@ -17,6 +17,10 @@ public class ProxyStudy {
 		ForumService serviceImpl = new ForumServiceImpl();
 		PerformanceHandler handler = new PerformanceHandler(serviceImpl);
 
+		// Proxy.newProxyInstance
+		// 方法的第一个入参为类加载器；
+		// 第二个入参为创建代理实例所需要实现的一组接口；因此，使用JDK创建代理有一个限制，即它只能为接口创建代理实例
+		// 第三个参数是整合了业务逻辑和横切逻辑的编织器对象
 		ForumService proxy = (ForumService) Proxy.newProxyInstance(serviceImpl.getClass().getClassLoader(),
 				serviceImpl.getClass().getInterfaces(), handler);
 
