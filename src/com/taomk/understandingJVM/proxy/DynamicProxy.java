@@ -33,7 +33,7 @@ public class DynamicProxy implements InvocationHandler {
 		
 		method.invoke(target, args);
 		
-		System.out.println("Thank you, that's the end of my speech. \n");
+		System.out.println("Thank you, that's the end of my speech.");
 		
 		return null;
 	}

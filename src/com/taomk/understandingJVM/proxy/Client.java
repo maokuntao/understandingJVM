@@ -20,11 +20,16 @@ public class Client {
 		InvocationHandler handler = new DynamicProxy(realSubject);
 
 		Subject proxySubject = (Subject) Proxy.newProxyInstance(handler.getClass().getClassLoader(),
-				realSubject.getClass().getInterfaces(), handler);
+//				realSubject.getClass().getInterfaces(), 
+				new Class[]{Subject.class},
+				handler);
 
 		System.out.println(proxySubject.getClass().getName());
-
+		System.out.println();
+		
 		proxySubject.sayHello("taomk");
+		System.out.println();
+		
 		proxySubject.wish();
 	}
 
