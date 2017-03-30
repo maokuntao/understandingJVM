@@ -1,5 +1,7 @@
 package com.taomk.understandingJVM.interview;
 
+import java.util.Stack;
+
 /**
  * 搜狐面试时提出的一个问题：倒序排列给出的单链表
  * 
@@ -10,13 +12,33 @@ public class ReverseSingleLinkedNode {
 
 	public static void main(String[] args) {
 		
-		SingleLinkedNode head = new SingleLinkedNode(0);
+		// 初始状态
+		SingleLinkedNode singleLinked = new SingleLinkedNode(0);
 		for (int i = 1; i <= 5; i++) {
-			head.add(i);
+			singleLinked.add(i);
 		}
 		
-		head.show(head);
-
+		System.out.print("init\t: ");
+		SingleLinkedNode.show(singleLinked);
+		
+		// insert
+		singleLinked.insert(6, 6);
+		
+		System.out.print("\ninsert\t: ");
+		SingleLinkedNode.show(singleLinked);
+		
+		
+		// delete
+		singleLinked.delete(6);
+		System.out.print("\ndelete\t: ");
+		SingleLinkedNode.show(singleLinked);
+		
+		// reverse
+		
+		System.out.print("\nreverse\t: ");
+//		Node reversedNode = Node.reverseByStack(singleLinked.getHead());
+		Node reversedNode = Node.reverseByExchange(singleLinked.getHead());
+		Node.show(reversedNode);
 	}
 
 }
@@ -41,7 +63,7 @@ class SingleLinkedNode{
 	
 	
 	/**
-	 * 将指定节点添加在链表尾部
+	 * 将指定值构造成一个节点，并添加在链表尾部
 	 * @param data
 	 */
 	public void add(Object data){
@@ -54,6 +76,25 @@ class SingleLinkedNode{
 		tail = newNode;
 	}
 	
+	/**
+	 * 将指定节点添加在链表尾部
+	 * @param data
+	 */
+	public void add(Node newNode){
+		if(head == null){
+			head = newNode;
+		}else{
+			tail.setNext(newNode);
+		}
+		tail = newNode;
+	}
+	
+	
+	/**
+	 * 将代表指定值的节点插入到指定的index位置
+	 * @param index
+	 * @param data
+	 */
 	public void insert(int index, Object data){
 		
 		// 遍历查找出位置为index-1的那个节点，即为将要插入节点的前一个节点
@@ -90,12 +131,36 @@ class SingleLinkedNode{
 		
 	}
 	
-	public void show(SingleLinkedNode s){
+	/**
+	 * 展示链表数据
+	 * 
+	 * @param s
+	 */
+	public static void show(SingleLinkedNode s){
 		Node current = s.head;
-		while(current!=null){
-			System.out.print(current.getData() + " -> ");
+		while(current != null){
+			System.out.print(current.getData());
+			if(current.getNext()!=null){
+				System.out.print(" -> ");
+			}
 			current = current.getNext();
 		}
+	}
+		
+	public Node getHead() {
+		return head;
+	}
+
+	public void setHead(Node head) {
+		this.head = head;
+	}
+
+	public Node getTail() {
+		return tail;
+	}
+
+	public void setTail(Node tail) {
+		this.tail = tail;
 	}
 }
 
@@ -138,5 +203,65 @@ class Node {
 
 	public void setNext(Node next) {
 		this.next = next;
+	}
+	
+	/**
+	 * 使用栈来完成链表反转
+	 * 
+	 * @param head
+	 * @return
+	 */
+	public static Node reverseByStack(Node head) {  
+	    Stack<Node> stack = new Stack<Node>();  
+	      
+	    // put all the nodes into the stack  
+	    while (head != null) {  
+	        stack.add(head);  
+	        head = head.getNext();  
+	    }  
+	      
+	    //reverse the linked list  
+	    Node current = stack.pop();  
+	    head = current;  
+	    while (stack.empty() != true) {  
+	        Node next = stack.pop();  
+	        //set the pointer to null, so the last node will not point to the first node.  
+	        next.setNext(null);  
+	        current.setNext(next);  
+	        current = next;  
+	    }  
+	      
+	    return head;      
+	}  
+	
+	/**
+	 * 利用两个指针，分别指向前一个节点和当前节点，每次做完当前节点和下一个节点的反转后，把两个节点往下移，直到到达最后节点。
+	 * 
+	 * @param head
+	 * @return
+	 */
+	public static Node reverseByExchange(Node head) {  
+	    Node previous = null;  
+	  
+	    while (head != null) {  
+	        Node nextNode = head.getNext();  
+	        head.setNext(previous);  
+	        previous = head;  
+	        head = nextNode;  
+	    }  
+	          
+	    return previous;      
+	}  
+
+	
+	public static void show(Node head){
+		Node current = head;
+		while(current != null){
+			System.out.print(current.getData());
+			if(current.getNext()!=null){
+				System.out.print(" -> ");
+			}
+			current = current.getNext();
+		}
 	}
 }
