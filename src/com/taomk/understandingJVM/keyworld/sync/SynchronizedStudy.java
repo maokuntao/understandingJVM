@@ -1,4 +1,4 @@
-package com.taomk.understandingJVM.keyworld;
+package com.taomk.understandingJVM.keyworld.sync;
 
 /**
  * <code>Synchronized</code> 关键字学习
