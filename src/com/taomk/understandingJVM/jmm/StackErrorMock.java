@@ -10,20 +10,22 @@ package com.taomk.understandingJVM.jmm;
  */
 public class StackErrorMock {
 
-	private static int count = 1;
-	
-	private void call(){
-		count++;
+	private static int loopCount = 1;
+
+	private void call() {
+		loopCount++;
+		// 递归调用
 		call();
 	}
-	
+
 	public static void main(String[] args) {
 
 		StackErrorMock mock = new StackErrorMock();
 		try {
 			mock.call();
-		} catch (Throwable e) {
-			System.out.println("Stack deep : " + count);
+		} catch (Throwable e) {// catch的不是Error，而是Throwable
+			// 每次运行的结果不一样
+			System.out.println("Stack deep : " + loopCount);
 			e.printStackTrace();
 		}
 	}
