@@ -10,12 +10,15 @@ public class SynchronizedStudy {
 
 	public static void main(String[] args) {
 
-		TxtThread t = new TxtThread();
-		new Thread(t , "Thtead-1").start();
-		new Thread(t , "Thtead-2").start();
-		new Thread(t , "Thtead-3").start();
-		new Thread(t , "Thtead-4").start();
-		new Thread(t , "Thtead-5").start();
+		TxtThread t1 = new TxtThread();
+		new Thread(t1 , "T1-1").start();
+		new Thread(t1 , "T1-2").start();
+		new Thread(t1 , "T1-3").start();
+		
+//		TxtThread t2 = new TxtThread();
+//		new Thread(t2 , "T2-1").start();
+//		new Thread(t2 , "T2-2").start();
+//		new Thread(t2 , "T2-3").start();
 	}
 
 	
@@ -24,20 +27,24 @@ public class SynchronizedStudy {
 class TxtThread implements Runnable{
 
 	static Object o = new Object();
-//	String str = "";
+	int num = 100;
+	
 	@Override
 	public void run() {
-		int num = 100;
-		synchronized(o){
+//		synchronized(this){
 			while (num > 0) {
-				try {
-					Thread.sleep(10);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				System.out.println(Thread.currentThread().getName() + "'num is " + num--);
+//				try {
+//					Thread.sleep(100);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+				reduce();
 			}
-		}
+//		}
+	}
+	
+	public synchronized void reduce(){
+		System.out.println(Thread.currentThread().getName() + "'num is " + num--);
 	}
 	
 }
