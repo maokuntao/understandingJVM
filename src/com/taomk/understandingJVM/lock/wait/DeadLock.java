@@ -1,8 +1,10 @@
 package com.taomk.understandingJVM.lock.wait;
 
 /**
+ * <pre>
  * {@link https://segmentfault.com/q/1010000009461368}
- * 
+ * 回头再看，好像就是自己实现了一个blocking queue呢
+ * </pre>
  * @author taomk 2017年5月18日 上午10:48:08
  *
  */
