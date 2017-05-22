@@ -24,6 +24,7 @@ public class DeadLock {
 		synchronized (lock) {
 			if (isProduct) {
 				try {
+					System.out.println("produce loop...");
 					lock.wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -48,6 +49,7 @@ public class DeadLock {
 				isProduct = false;
 			} else {
 				try {
+					System.out.println("consume loop...");
 					lock.wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -70,7 +72,7 @@ public class DeadLock {
 			public void run() {
 				try {
 					System.out.println("Sleeping");
-					sleep(3*1000);
+					sleep(1*1000);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
