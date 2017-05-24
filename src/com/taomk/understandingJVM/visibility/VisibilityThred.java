@@ -11,7 +11,9 @@ package com.taomk.understandingJVM.visibility;
  */
 public class VisibilityThred extends Thread{
 
-	private boolean stop = false;
+	// 注意比较变量加volatile关键字前后的区别
+//	private boolean stop = false;
+	private volatile boolean stop = false;
 	
 	@Override
 	public void run() {
