@@ -48,6 +48,7 @@ public class NameChecker {
 		 */
 		private void checkCamelCase(TypeElement e, boolean initialCaps) {
 			String name = e.getSimpleName().toString();
+			@SuppressWarnings("unused")
 			boolean previousUpper = false;
 			boolean conventional = true;
 			int firstCodePoint = name.codePointAt(0);

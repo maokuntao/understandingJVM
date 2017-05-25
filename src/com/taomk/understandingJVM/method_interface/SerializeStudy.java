@@ -57,7 +57,7 @@ public class SerializeStudy extends SerializeStudyParent implements Serializable
 			SerializeStudy b = (SerializeStudy) in.readObject();
 			in.close();
 			
-			System.out.println(b.staticVal);//序列化保存的是对象的状态，静态变量属于类的状态，因此 序列化并不保存静态变量。
+			System.out.println(SerializeStudy.staticVal);//序列化保存的是对象的状态，静态变量属于类的状态，因此 序列化并不保存静态变量。
 			System.out.println(b.commonStr);
 			System.out.println(b.transientStr);
 			System.out.println(b.parentCommonStr);

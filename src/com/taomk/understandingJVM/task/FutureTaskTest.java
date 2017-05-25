@@ -66,7 +66,6 @@ class ComputeTask implements Callable<Integer> {
 		System.out.println("生成子线程计算任务: " + taskName);
 	}
 	
-	@SuppressWarnings("unused")
 	public String getTaskName() {
 		return this.taskName;
 	}

@@ -22,6 +22,7 @@ public class Allocation {
 	 * 
 	 * @param args
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 			byte[] allocation1 , allocation2, allocation3, allocation4;
 			allocation1 = new byte[2*_1MB];
