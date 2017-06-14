@@ -16,8 +16,12 @@ public class Counter {
 	
 	public int inc(){
 		lock.lock();
-		int newCount = count++;
+		count++;
 		lock.unlock();
-		return newCount;
+		return count;
+	}
+	
+	public synchronized int get(){
+		return count;
 	}
 }

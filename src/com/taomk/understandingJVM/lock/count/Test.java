@@ -19,9 +19,8 @@ public class Test {
 				
 				Counter c1 = new Counter();
 				for (int i = 0; i < 100; i++) {
-					
 //					System.out.println(Thread.currentThread().getName() + " : " + c1.inc());
-					System.out.println(Thread.currentThread().getName() + " : " + c.inc());
+					System.out.println(Thread.currentThread().getName() + " increase ... " + c.inc());
 				}
 			}
 		}.start();;
@@ -35,7 +34,7 @@ public class Test {
 				for (int i = 0; i < 200; i++) {
 					
 //					System.out.println(Thread.currentThread().getName() + " : " + c2.inc());
-					System.out.println(Thread.currentThread().getName() + " : " + c.inc());
+					System.out.println(Thread.currentThread().getName() + " get ... " + c.get());
 					
 				}
 			}
