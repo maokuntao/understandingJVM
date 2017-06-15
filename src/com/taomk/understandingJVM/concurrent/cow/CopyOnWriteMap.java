@@ -9,6 +9,15 @@ import java.util.Set;
  * <pre>
  * 自定义实现一个CopyOnWrite的Map
  * 
+ * 当put元素时，遵守 Copy-On-Write 的原理，按照以下步骤进行：
+ * 1，加锁
+ * 2，创建有一个新的map
+ * 3，将原map内容复制到新的map
+ * 4，将元素put进入新的map
+ * 5，将原map指向新map
+ * 6，返回添加的value
+ * 7，解锁
+ * 
  * http://ifeve.com/java-copy-on-write/comment-page-1/#comment-27735
  * </pre>
  * 
@@ -51,14 +60,6 @@ public class CopyOnWriteMap<K,V> implements Map<K,V>, Cloneable {
 	/* (non-Javadoc)
 	 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
 	 * 
-	 * 当put元素时，遵守 Copy-On-Write 的原理，按照以下步骤进行：
-	 * 1，加锁
-	 * 2，创建有一个新的map
-	 * 3，将原map内容复制到新的map
-	 * 4，将元素put进入新的map
-	 * 5，将原map指向新map
-	 * 6，返回添加的value
-	 * 7，解锁
 	 */
 	@Override
 	public V put(K key, V value) {
