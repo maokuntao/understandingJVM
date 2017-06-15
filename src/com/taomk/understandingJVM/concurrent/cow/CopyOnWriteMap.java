@@ -18,7 +18,7 @@ import java.util.Set;
  * 6，返回添加的value
  * 7，解锁
  * 
- * http://ifeve.com/java-copy-on-write/comment-page-1/#comment-27735
+ * @see http://ifeve.com/java-copy-on-write/comment-page-1/#comment-27735
  * </pre>
  * 
  * @author taomk 2017年6月15日 下午3:55:30
@@ -30,6 +30,11 @@ public class CopyOnWriteMap<K,V> implements Map<K,V>, Cloneable {
 	
 	public CopyOnWriteMap(){
 		internalMap = new HashMap<K,V>();
+	}
+	
+	// 自定义初始容量的Map
+	public CopyOnWriteMap(int capacity){
+		internalMap = new HashMap<K,V>(capacity);
 	}
 	
 	@Override
