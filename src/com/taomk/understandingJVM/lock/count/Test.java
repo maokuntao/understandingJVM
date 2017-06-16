@@ -14,6 +14,7 @@ public class Test {
 		
 		new Thread("T-1"){
 		
+			@SuppressWarnings("unused")
 			@Override
 			public void run() {
 				
@@ -27,6 +28,7 @@ public class Test {
 		
 		new Thread("T-2"){
 		
+			@SuppressWarnings("unused")
 			Counter c2 = new Counter();
 			
 			@Override

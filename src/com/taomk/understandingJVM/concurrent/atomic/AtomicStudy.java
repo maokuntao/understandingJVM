@@ -58,6 +58,7 @@ public class AtomicStudy {
 	/**
 	 * 普通计数方式
 	 */
+	@SuppressWarnings("unused")
 	private void commonCount(){
 		commonI++;
 	}

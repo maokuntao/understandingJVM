@@ -1,7 +1,6 @@
 package com.taomk.understandingJVM.concurrent.map;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
