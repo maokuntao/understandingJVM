@@ -53,7 +53,7 @@ public class Resource {
 			}
 		}
 		// 资源数量减1
-		this.resourceCount--;
+//		this.resourceCount--;
 		System.out.println(Thread.currentThread().getName() + " 消费了 " + this.resourceName);
 		// 库存已经消耗完毕
 		hasResource = false;
