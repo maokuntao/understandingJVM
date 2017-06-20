@@ -1,4 +1,4 @@
-package com.taomk.understandingJVM.concurrent.task;
+package com.taomk.understandingJVM.concurrent.task.consumeAndProducer.single;
 
 /**
  * 资源类（单一的生产者和消费者）
@@ -59,5 +59,9 @@ public class Resource {
 		hasResource = false;
 		// 唤醒生产者开始生产
 		notifyAll();
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }
