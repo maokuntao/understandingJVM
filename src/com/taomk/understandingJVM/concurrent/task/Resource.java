@@ -34,10 +34,30 @@ public class Resource {
 		// 库存的物料名称
 		this.resourceName = name + String.valueOf(resourceCount);
 		System.out.println(Thread.currentThread().getName() + " 生产了 " + this.resourceName);
-		// 是否还有库存指示标示
+		// 还有库存
 		hasResource = true;
 		// 唤醒消费者可以消费了
 		notifyAll();
+	}
 
+	/**
+	 * 消费者消耗资源
+	 */
+	public synchronized void consume() {
+		// 如果库存资源已经没有了，那么消费者就等待
+		if (!hasResource) {
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		// 资源数量减1
+		this.resourceCount--;
+		System.out.println(Thread.currentThread().getName() + " 消费了 " + this.resourceName);
+		// 库存已经消耗完毕
+		hasResource = false;
+		// 唤醒生产者开始生产
+		notifyAll();
 	}
 }
