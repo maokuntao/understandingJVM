@@ -61,7 +61,4 @@ public class Resource {
 		notifyAll();
 	}
 	
-	public static void main(String[] args) {
-		
-	}
 }
