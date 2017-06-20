@@ -1,7 +1,7 @@
 package com.taomk.understandingJVM.concurrent.task.consumeAndProducer.single;
 
 /**
- * 资源类（单一的生产者和消费者）
+ * 资源类（单一的生产者和消费者，通过synchronized关键字来实现）
  * 
  * @author taomk 2017年6月20日 下午7:52:14
  *
