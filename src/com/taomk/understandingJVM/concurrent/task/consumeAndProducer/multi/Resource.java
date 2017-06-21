@@ -1,4 +1,4 @@
-package com.taomk.understandingJVM.concurrent.task.consumeAndProducer.multy;
+package com.taomk.understandingJVM.concurrent.task.consumeAndProducer.multi;
 
 /**
  * 资源类（多个生产者和消费者，通过synchronized关键字来实现）
