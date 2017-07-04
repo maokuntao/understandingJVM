@@ -5,7 +5,6 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
 
 /**
  * @author taomk 2017年7月4日 下午1:55:23
@@ -30,7 +29,7 @@ public class RSASignature {
 	 */
 	public static String sign(String content, String privateKey, String encode) {
 		try {
-			PKCS8EncodedKeySpec priPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKey));
+			PKCS8EncodedKeySpec priPKCS8 = new PKCS8EncodedKeySpec(Base64.decode(privateKey));
 
 			KeyFactory keyf = KeyFactory.getInstance("RSA");
 			PrivateKey priKey = keyf.generatePrivate(priPKCS8);
@@ -42,7 +41,7 @@ public class RSASignature {
 
 			byte[] signed = signature.sign();
 
-			return Base64.getEncoder().encode(signed).toString();
+			return Base64.encode(signed).toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,16 +49,22 @@ public class RSASignature {
 		return null;
 	}
 
+	/**
+	 * 通过私钥对加密对象加签
+	 * @param content
+	 * @param privateKey
+	 * @return
+	 */
 	public static String sign(String content, String privateKey) {
 		try {
-			PKCS8EncodedKeySpec priPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKey));
+			PKCS8EncodedKeySpec priPKCS8 = new PKCS8EncodedKeySpec(Base64.decode(privateKey));
 			KeyFactory keyf = KeyFactory.getInstance("RSA");
 			PrivateKey priKey = keyf.generatePrivate(priPKCS8);
 			java.security.Signature signature = java.security.Signature.getInstance(SIGN_ALGORITHMS);
 			signature.initSign(priKey);
 			signature.update(content.getBytes());
 			byte[] signed = signature.sign();
-			return Base64.getEncoder().encode(signed).toString();
+			return Base64.encode(signed).toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,7 +87,7 @@ public class RSASignature {
 	public static boolean doCheck(String content, String sign, String publicKey, String encode) {
 		try {
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-			byte[] encodedKey = Base64.getDecoder().decode(publicKey);
+			byte[] encodedKey = Base64.decode(publicKey);
 			PublicKey pubKey = keyFactory.generatePublic(new X509EncodedKeySpec(encodedKey));
 
 			java.security.Signature signature = java.security.Signature.getInstance(SIGN_ALGORITHMS);
@@ -90,7 +95,7 @@ public class RSASignature {
 			signature.initVerify(pubKey);
 			signature.update(content.getBytes(encode));
 
-			boolean bverify = signature.verify(Base64.getDecoder().decode(sign));
+			boolean bverify = signature.verify(Base64.decode(sign));
 			return bverify;
 
 		} catch (Exception e) {
@@ -103,7 +108,7 @@ public class RSASignature {
 	public static boolean doCheck(String content, String sign, String publicKey) {
 		try {
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-			byte[] encodedKey = Base64.getDecoder().decode(publicKey);
+			byte[] encodedKey = Base64.decode(publicKey);
 			PublicKey pubKey = keyFactory.generatePublic(new X509EncodedKeySpec(encodedKey));
 
 			java.security.Signature signature = java.security.Signature.getInstance(SIGN_ALGORITHMS);
@@ -111,7 +116,7 @@ public class RSASignature {
 			signature.initVerify(pubKey);
 			signature.update(content.getBytes());
 
-			boolean bverify = signature.verify(Base64.getDecoder().decode(sign));
+			boolean bverify = signature.verify(Base64.decode(sign));
 			return bverify;
 
 		} catch (Exception e) {
