@@ -20,6 +20,11 @@ public class LocalCache {
 	 * 模拟数据库，里面存储的是 com.taomk.understandingJVM.cache.Goods
 	 */
 	Map<String, Object> goodsInDB = new HashMap<String, Object>();
+	
+	/**
+	 * 缓存
+	 */
+	Map<String, Object> localCacheStoreMap = new HashMap<String, Object>();
 
 	LocalCache() {
 
@@ -62,8 +67,6 @@ public class LocalCache {
 
 	public Object useLocalCache() {
 
-		Map<String, Object> localCacheStoreMap = new HashMap<String, Object>();
-
 		List<String> infoList = this.getInfoList();
 
 		Object valueObject = null;
@@ -91,7 +94,7 @@ public class LocalCache {
 	private Object getInfoFromDB(String id) {
 		// 可能比较耗时
 		try {
-			Thread.sleep(3 * 1000);
+			Thread.sleep(1 * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
