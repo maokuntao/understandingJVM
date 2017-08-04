@@ -18,7 +18,7 @@ public class ArraysTest {
 		List<String> strList = Arrays.asList(str);
 		
 		System.out.println(strList.getClass());
-		strList.forEach(s -> System.out.printf(s + ","));
+		strList.forEach(s -> System.out.printf(s + "|"));
 		
 	}
 
