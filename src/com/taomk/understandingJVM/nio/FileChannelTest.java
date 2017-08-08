@@ -3,7 +3,6 @@ package com.taomk.understandingJVM.nio;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 
 /**
@@ -26,13 +25,15 @@ public class FileChannelTest {
 
 			// 将数据读取到buffer
 			int bytesRead = channel.read(buffer);
+			System.out.println("Size " + channel.size());
 			while (bytesRead != -1) {
 				System.out.println("Read " + bytesRead);
 				// 切换buffer模式，从写模式转为读模式
 				buffer.flip();
+				System.out.println("Content:");
 				while (buffer.hasRemaining()) {
 					// 读取数据
-					System.out.println((char) buffer.get());
+					System.out.print((char) buffer.get());
 				}
 				// clear或者compact，
 				// clear会清空整个缓存，
