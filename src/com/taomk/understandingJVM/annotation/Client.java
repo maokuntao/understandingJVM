@@ -1,7 +1,5 @@
 package com.taomk.understandingJVM.annotation;
 
-import java.lang.annotation.Annotation;
-
 /**
  * 测试类
  * @author taomk 2017年7月26日 下午8:38:18

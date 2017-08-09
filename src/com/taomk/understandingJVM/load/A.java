@@ -23,6 +23,7 @@ public class A {
 	}
 	
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		A ab = new B();
 		ab = new B();
 //		ab = new B(233);
@@ -57,6 +58,7 @@ class B extends A{
 		System.out.println("普通函数foo()");
 	}
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		A ab = new B();
 		ab = new B();
