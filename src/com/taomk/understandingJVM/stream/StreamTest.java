@@ -29,6 +29,9 @@ public class StreamTest {
 				.getName();
 
 		System.out.println("选择距离自己最近的一家店铺点菜 , 这家店铺的名称是：" + choosedStoreName);
+		
+		long hotSotreCount = stores.stream().filter(p -> p.salesCount > 1000).count();
+		System.out.println("月销量超过1000，销售火爆的店铺数量是：" + hotSotreCount);
 	}
 
 	/**

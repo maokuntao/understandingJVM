@@ -14,14 +14,14 @@ public class ArraysTest {
 	public static void main(String[] args) {
 		
 		// 将一个字符串转换为ArrayList
-		String str = "abcdefghijkl";
-		List<String> strList = Arrays.asList(str);
+		String str1 = "abc";
+		String str2 = "def";
+		String str3 = "ghi";
+		String str4 = "jkl";
+		List<String> strList = Arrays.asList(str1, str2, str3, str4);
 		
 		System.out.println(strList.getClass());
-//		strList.forEach(s -> System.out.printf(s + "|"));
-		for (String s : strList) {
-			System.out.println(s + "|");
-		}
+		strList.forEach(s -> System.out.printf(s + "|"));
 		
 	}
 
