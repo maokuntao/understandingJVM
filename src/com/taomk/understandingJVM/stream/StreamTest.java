@@ -3,6 +3,7 @@ package com.taomk.understandingJVM.stream;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * http://www.importnew.com/26090.html
@@ -32,6 +33,22 @@ public class StreamTest {
 		
 		long hotSotreCount = stores.stream().filter(p -> p.salesCount > 1000).count();
 		System.out.println("月销量超过1000，销售火爆的店铺数量是：" + hotSotreCount);
+		
+		StoreProperty s = stores.stream().min(Comparator.comparingInt(p->p.priceLevel)).get();
+		System.out.println("价格最低的那家店铺是：" + s.getName());
+		
+		List<StoreProperty> nearestStores = stores.stream().sorted(Comparator.comparingInt(p -> p.distance)).limit(2).collect(Collectors.toList());
+		System.out.println("距离最近的两家店铺是：");
+		nearestStores.forEach(p -> System.out.println("\t" + p.name ));
+		
+		List<String> names = stores.parallelStream()
+			.filter(p -> p.priceLevel<30)
+			.sorted(Comparator.comparingInt(StoreProperty::getDistance))
+			.limit(3)
+			.map(StoreProperty::getName)
+			.collect(Collectors.toList());
+		System.out.println("筛选出价格低于30，按照距离排序的3家店铺是：");
+		names.forEach(p -> System.out.println("\t" + p));
 	}
 
 	/**
