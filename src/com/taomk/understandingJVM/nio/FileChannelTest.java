@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
+import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileChannel.MapMode;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 
@@ -18,12 +20,16 @@ public class FileChannelTest {
 
 	public static void main(String[] args) throws IOException {
 
-		String filePath = "/Users/Dev/github/understandingJVM/README.md";
-		readFile(filePath);
-
-		String toFile = "/Users/Dev/github/understandingJVM/nio-data.txt";
-		String content = "New String to write to file...\n当前毫秒数：" + System.currentTimeMillis();
-		writeToFile(content, toFile);
+//		String filePath = "/Users/Dev/github/understandingJVM/README.md";
+//		readFile(filePath);
+//
+//		String toFile = "/Users/Dev/github/understandingJVM/nio-data.txt";
+//		String content = "New String to write to file...\n当前毫秒数：" + System.currentTimeMillis();
+//		writeToFile(content, toFile);
+		
+		String bigFile = "/Users/Tao/Downloads/Spring实战.pdf";
+		readBigFile1(bigFile);
+		readBigFile2(bigFile);
 
 	}
 
@@ -89,6 +95,83 @@ public class FileChannelTest {
 			channel.write(buffer);
 		}
 		aFile.close();
+	}
+	
+	/**
+	 * 使用ByteBuffer来读取一个较大文件的效率
+	 * 
+	 * @param filePath
+	 * @throws IOException
+	 */
+	public static void readBigFile1(String filePath) throws IOException {
+		RandomAccessFile rfa = null;
+		FileChannel fc = null;
+		try {
+			
+			System.out.println("=============readBigFile1=============");
+
+			rfa = new RandomAccessFile(filePath, "r");
+			fc = rfa.getChannel();
+			
+			System.out.println("Size : " + rfa.length());
+			
+			long startTime = System.currentTimeMillis();
+			
+			ByteBuffer buffer = ByteBuffer.allocate((int) fc.size());
+			buffer.clear();
+			fc.read(buffer);
+			System.out.println(buffer.getChar((int) (fc.size()/2)));
+			
+			long endTime = System.currentTimeMillis();
+			System.out.println("readBigFile1(ms) : " + (endTime-startTime));
+		} catch (Exception e) {
+			System.err.println(e);
+		}finally {
+			if(rfa!=null) {
+				rfa.close();
+			}
+			if(fc!=null) {
+				fc.close();
+			}
+		}
+	}
+	
+	/**
+	 * 使用MappedByteBuffer来读取一个较大文件
+	 * 
+	 * @param filePath
+	 * @throws IOException
+	 */
+	public static void readBigFile2(String filePath) throws IOException {
+		RandomAccessFile rfa = null;
+		FileChannel fc = null;
+		try {
+			
+			System.out.println("=============readBigFile2=============");
+			
+			rfa = new RandomAccessFile(filePath, "r");
+			fc = rfa.getChannel();
+			
+			System.out.println("Size : " + rfa.length());
+			
+			long startTime = System.currentTimeMillis();
+			
+			MappedByteBuffer mappedBuffer = fc.map(MapMode.READ_ONLY, 0, fc.size());
+			
+			System.out.println(mappedBuffer.getChar((int) (rfa.length()/2)));
+			
+			long endTime = System.currentTimeMillis();
+			System.out.println("readBigFile1(ms) : " + (endTime-startTime));
+		} catch (Exception e) {
+			System.err.println(e);
+		}finally {
+			if(rfa!=null) {
+				rfa.close();
+			}
+			if(fc!=null) {
+				fc.close();
+			}
+		}
 	}
 
 }
