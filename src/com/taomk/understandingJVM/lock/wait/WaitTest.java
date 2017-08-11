@@ -18,6 +18,7 @@ public class WaitTest {
 		
 		t.start();
 		
+//		让当前线程（主线程）睡眠指定毫秒数，一直持有当前线程的线程监视器
 		Thread.sleep(12*1000);
 		
 		for (int i = 5; i > 0; i--) {
@@ -39,15 +40,15 @@ public class WaitTest {
 			synchronized (a) {
 				try {
 					
-					for (int i = 10; i > 0; i--) {
+					for (int i = 1; i < 11; i++) {
 						Thread.sleep(1000);
-						System.out.println("我在运行 ***************");
+						System.out.println("我在运行 ...... * " + i);
 					}
 					
 					a.wait();
 					
 					for (int i = 10; i > 0; i--) {
-						System.out.println("谢谢唤醒**********又开始运行了*******");
+						System.out.println("谢谢唤醒 ...... ，又开始运行了*******");
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
