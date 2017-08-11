@@ -235,10 +235,33 @@ class Node {
 	}  
 	
 	/**
-	 * 利用两个指针，分别指向前一个节点和当前节点，每次做完当前节点和下一个节点的反转后，把两个节点往下移，直到到达最后节点。
+	 * <pre>
+	 * 利用两个指针，分别指向前一个节点和当前节点
+	 * 每次做完当前节点和下一个节点的反转后，把两个节点往下移，直到到达最后节点。
 	 * 
-	 * @param head
-	 * @return
+	 * 初始链表：A(head)->B->C->D
+	 * 新的链表：null(previous)
+	 * 
+	 * 第一次遍历：
+	 * 初始链表：B(head)->C->D
+	 * 新的链表：A(previous)
+	 * 
+	 * 第二次遍历：
+	 * 初始链表：C(head)->D
+	 * 新的链表：B(previous)->A
+	 * 
+	 * 第三次遍历：
+	 * 初始链表：D(head)
+	 * 新的链表：C(previous)->B->A
+	 * 
+	 * 第四次遍历：
+	 * 初始链表：null(head)
+	 * 新的链表：D(previous)->C->B->A
+	 * 
+	 * </pre>
+	 * 
+	 * @param head 初始链表头
+	 * @return 反转后的新链表头节点
 	 */
 	public static Node reverseByExchange(Node head) {  
 	    Node previous = null;  
