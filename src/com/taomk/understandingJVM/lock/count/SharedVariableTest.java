@@ -13,7 +13,7 @@ public class SharedVariableTest {
 	public static void main(String[] args) {
 		
 		SharedVariableTest svt1 = new SharedVariableTest();
-		SharedVariableTest svt2 = new SharedVariableTest();
+//		SharedVariableTest svt2 = new SharedVariableTest();
 		
 		// 为不同对象创建的线程，线程之间不共享实例变量
 //		T1 t1 = svt1.new T1();
@@ -23,11 +23,11 @@ public class SharedVariableTest {
 //		new Thread(t2).start();
 		
 		// 相同对象创建的线程，线程之间不共享实例变量
-//		T1 t1 = svt1.new T1();
-//		t1.start();
-//		
-//		T2 t2 = svt1.new T2();
-//		new Thread(t2).start();
+		T1 t1 = svt1.new T1();
+		t1.start();
+		
+		T2 t2 = svt1.new T2();
+		new Thread(t2).start();
 		
 	}
 
