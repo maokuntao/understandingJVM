@@ -2,9 +2,10 @@ package com.taomk.understandingJVM;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+//import java.util.concurrent.ExecutorService;
+//import java.util.concurrent.Executors;
+//import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
 /**
  * http://www.cnblogs.com/dolphin0520/p/3949310.html
@@ -15,10 +16,18 @@ import java.util.concurrent.Future;
 public class FutureTest {
 
 	public static void main(String[] args) {
-		ExecutorService executors = Executors.newCachedThreadPool();
+		
 		Task task = new Task();
-		Future<Integer> result = executors.submit(task);
-		executors.shutdown();
+
+		// 第一种方式来使用Task + Future，通过Executor来使用
+//		ExecutorService executors = Executors.newCachedThreadPool();
+//		Future<Integer> result = executors.submit(task);
+//		executors.shutdown();
+		
+		// 第二种方式来使用FutureTask，通过Thread来使用
+		FutureTask<Integer> result = new FutureTask<Integer>(task);
+		Thread taskThread = new Thread(result);
+		taskThread.start();
 		
 		try {
 			Thread.sleep(1000);
