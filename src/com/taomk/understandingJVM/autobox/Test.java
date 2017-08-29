@@ -12,7 +12,8 @@ public class Test {
         return value;
     }
 
-    public static void main(String[] args) {
+    @SuppressWarnings("null")
+	public static void main(String[] args) {
         Long value = null;
         // ...
         test(value);
