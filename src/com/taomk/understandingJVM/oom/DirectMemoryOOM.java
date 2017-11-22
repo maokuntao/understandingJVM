@@ -14,6 +14,7 @@ import sun.misc.Unsafe;
  * @author taomk 2016年11月7日 下午2 :24:44
  *
  */
+@SuppressWarnings("restriction")
 public class DirectMemoryOOM {
 
 	private static final int _1MB = 1024 * 1024;
